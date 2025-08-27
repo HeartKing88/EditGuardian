@@ -46,7 +46,6 @@ The warning is also **auto-deleted** after a few seconds, keeping the chat clean
 ## 🛠️ Local / VPS Setup
 
 ```bash
-git clone https://github.com/<your-username>/telegram-edit-guard-bot.git
-cd telegram-edit-guard-bot
+git clone https://github.com/HeartKing88/EditGuardian && cd EditGuardian
 pip install -r requirements.txt
 python3 bot.py
