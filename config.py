@@ -1,11 +1,22 @@
 import os
 
 class Config:
-    # Telegram Bot Token
+    # Bot token (from BotFather)
     BOT_TOKEN = os.getenv("TG_BOT_TOKEN", "")
 
-    # Warning auto-delete time (seconds)
+    # Owner info
+    OWNER_ID = int(os.getenv("OWNER_ID", "123456789"))  # apna Telegram numeric user_id daalo
+    OWNER_NAME = os.getenv("OWNER_NAME", "Bot Owner")
+
+    # Start image (url ya local file path)
+    START_IMAGE = os.getenv("START_IMAGE", "")  # e.g. "https://i.imgur.com/xyz.png"
+
+    # Support group/channel
+    SUPPORT_GROUP = os.getenv("SUPPORT_GROUP", "https://t.me/YourSupportGroup")
+    SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/YourSupportChannel")
+
+    # Warning delete delay (seconds)
     WARNING_DELETE_DELAY = int(os.getenv("WARNING_DELETE_DELAY", "5"))
 
-    # Debug mode (True/False)
+    # Debug mode
     DEBUG = os.getenv("DEBUG", "False").lower() == "true"
