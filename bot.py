@@ -86,7 +86,25 @@ async def main():
     app.add_handler(MessageHandler(filters.UpdateType.EDITED_MESSAGE, on_edited_message))
 
     logger.info("Bot is running...")
-    await app.run_polling()
+    await app.initialize()  # Initialize the application
+    await app.start()       # Start the application
+    await app.run_polling() # Run polling
+    await app.stop()        # Stop the application
+    await app.shutdown()    # Shutdown the application
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        # Check if an event loop is already running
+        loop = asyncio.get_event_loop()
+        if loop.is_running():
+            logger.warning("Event loop is already running. Running main() in existing loop.")
+            loop.create_task(main())
+        else:
+            asyncio.run(main())
+    except RuntimeError as e:
+        if "no running event loop" in str(e):
+            logger.info("No running event loop found. Starting new event loop.")
+            asyncio.run(main())
+        else:
+            logger.error("Unexpected error: %s", e)
+            raise
