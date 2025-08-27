@@ -31,10 +31,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [
             InlineKeyboardButton("👑 Owner", url=f"tg://user?id={Config.OWNER_ID}"),
-        ],
-        [
-            InlineKeyboardButton("📢 Support Channel", url=Config.SUPPORT_CHANNEL)],
             InlineKeyboardButton("💬 Support Group", url=Config.SUPPORT_GROUP),
+        ],
+        [InlineKeyboardButton("📢 Support Channel", url=Config.SUPPORT_CHANNEL)],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
