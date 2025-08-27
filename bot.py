@@ -1,6 +1,6 @@
 import logging
 import asyncio
-from telegram import Update
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     ApplicationBuilder,
     ContextTypes,
@@ -25,22 +25,40 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"🚨 *This is Edit Guard Bot!*\n"
         f"🗑️ All edited messages will be deleted.\n"
         f"⚠️ Warning will be shown and auto-deleted.\n\n"
-        f"👑 *Owner*: [{Config.OWNER_NAME}](tg://user?id={Config.OWNER_ID})\n"
-        f"💬 *Support Group*: {Config.SUPPORT_GROUP}\n"
-        f"📢 *Support Channel*: {Config.SUPPORT_CHANNEL}"
     )
+    
+    # Create inline keyboard with buttons
+    keyboard = [
+        [
+            InlineKeyboardButton("👑 Owner", url=f"tg://user?id={Config.OWNER_ID}"),
+        ],
+        [
+            InlineKeyboardButton("📢 Support Channel", url=Config.SUPPORT_CHANNEL)],
+            InlineKeyboardButton("💬 Support Group", url=Config.SUPPORT_GROUP),
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
     if Config.START_IMAGE:
         try:
             await update.message.reply_photo(
                 photo=Config.START_IMAGE,
                 caption=caption,
-                parse_mode="Markdown"
+                parse_mode="Markdown",
+                reply_markup=reply_markup
             )
         except Exception as e:
             logger.error("Failed to send start image: %s", e)
-            await update.message.reply_text(caption, parse_mode="Markdown")
+            await update.message.reply_text(
+                text=caption,
+                parse_mode="Markdown",
+                reply_markup=reply_markup
+            )
     else:
-        await update.message.reply_text(caption, parse_mode="Markdown")
+        await update.message.reply_text(
+            text=caption,
+            parse_mode="Markdown",
+            reply_markup=reply_markup
+        )
 
 # 📌 Handle edited messages
 async def on_edited_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
