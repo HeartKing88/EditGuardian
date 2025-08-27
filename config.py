@@ -2,10 +2,10 @@ import os
 
 class Config:
     # Bot token (from BotFather)
-    BOT_TOKEN = os.getenv("BOT_TOKEN", "")
+    BOT_TOKEN = os.getenv("BOT_TOKEN", "8484447768:AAGj5TwSGne1XuWV26fEEPKPnl1I0IYq-TQ")
 
     # Owner info
-    OWNER_ID = int(os.getenv("OWNER_ID", "123456789"))  # apna Telegram numeric user_id daalo
+    OWNER_ID = int(os.getenv("OWNER_ID", "7338182362"))  # apna Telegram numeric user_id daalo
     OWNER_NAME = os.getenv("OWNER_NAME", "Bot Owner")
 
     # Start image (url ya local file path)
