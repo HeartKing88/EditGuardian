@@ -6,7 +6,7 @@ class Config:
 
     # Owner info
     OWNER_ID = int(os.getenv("OWNER_ID", "7548614955"))  # apna Telegram numeric user_id daalo
-    OWNER_NAME = os.getenv("OWNER_NAME", "sʏsᴛᴇᴍ")
+    OWNER_NAME = os.getenv("OWNER_NAME", None)
 
     # Start image (url ya local file path)
     START_IMAGE = os.getenv("START_IMAGE", "https://files.catbox.moe/m0a0ii.jpg")  # e.g. "https://i.imgur.com/xyz.png"
