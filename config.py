@@ -2,7 +2,7 @@ import os
 
 class Config:
     # Bot token (from BotFather)
-    BOT_TOKEN = os.getenv("TG_BOT_TOKEN", "")
+    BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 
     # Owner info
     OWNER_ID = int(os.getenv("OWNER_ID", "123456789"))  # apna Telegram numeric user_id daalo
