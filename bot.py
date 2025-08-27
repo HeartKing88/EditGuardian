@@ -64,8 +64,8 @@ async def on_edited_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         logger.exception("Failed to handle edited message: %s", e)
 
-# 📌 Main entrypoint
-async def main():
+# 📌 Main
+def main():
     if not Config.BOT_TOKEN:
         raise RuntimeError("⚠️ Please set TG_BOT_TOKEN environment variable")
 
@@ -75,35 +75,9 @@ async def main():
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.UpdateType.EDITED_MESSAGE, on_edited_message))
 
-    try:
-        logger.info("Bot is starting...")
-        await app.initialize()
-        await app.start()
-        logger.info("Bot is running...")
-        await app.run_polling()
-    except asyncio.CancelledError:
-        logger.info("Polling was cancelled, shutting down...")
-    except Exception as e:
-        logger.error("Unexpected error: %s", e)
-        raise
-    finally:
-        logger.info("Stopping bot...")
-        await app.stop()
-        await app.shutdown()
-        logger.info("Bot has stopped.")
+    logger.info("Bot is running...")
+    app.run_polling()
+
 
 if __name__ == "__main__":
-    try:
-        loop = asyncio.get_event_loop()
-        if loop.is_running():
-            logger.warning("Event loop is already running. Running main() in existing loop.")
-            loop.create_task(main())
-        else:
-            asyncio.run(main())
-    except RuntimeError as e:
-        if "no running event loop" in str(e):
-            logger.info("No running event loop found. Starting new event loop.")
-            asyncio.run(main())
-        else:
-            logger.error("Unexpected error: %s", e)
-            raise
+    main()
