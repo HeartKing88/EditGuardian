@@ -1,12 +1,36 @@
 {
   "name": "Telegram Edit Guard Bot",
-  "description": "A Telegram moderation bot that deletes all edited messages and warns the user (warning auto-deletes after a few seconds).",
+  "description": "A Telegram moderation bot that deletes all edited messages and warns users (warning auto-deletes). Includes /start with banner, owner info, support group & support channel.",
   "repository": "https://github.com/HeartKing88/EditGuardian",
   "keywords": ["telegram", "bot", "moderation", "python", "heroku"],
   "env": {
     "TG_BOT_TOKEN": {
       "description": "Your Telegram Bot API Token from @BotFather",
       "required": true
+    },
+    "OWNER_ID": {
+      "description": "Telegram user ID of the bot owner",
+      "required": true
+    },
+    "OWNER_NAME": {
+      "description": "Name of the bot owner (shown in /start)",
+      "value": "Bot Owner",
+      "required": false
+    },
+    "START_IMAGE": {
+      "description": "Optional start image (URL or path)",
+      "value": "",
+      "required": false
+    },
+    "SUPPORT_GROUP": {
+      "description": "Telegram support group link",
+      "value": "https://t.me/YourSupportGroup",
+      "required": false
+    },
+    "SUPPORT_CHANNEL": {
+      "description": "Telegram support channel link",
+      "value": "https://t.me/YourSupportChannel",
+      "required": false
     },
     "WARNING_DELETE_DELAY": {
       "description": "Time in seconds after which warning message should be deleted",
